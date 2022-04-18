@@ -1,0 +1,54 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encyclopedia</title>
+</head>
+<body>
+    before
+    <br>
+
+    <br>
+after
+</body>
+</html> -->
+
+<!-- {% load static %} -->
+
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <title>Encyclopedia</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link href="/css/style.css" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+        <div class="row">
+            <div class="sidebar col-lg-2 col-md-3">
+                <h2>Wiki</h2>
+                <form action="{% url 'search' %}" method="get">
+                    <input class="search" autocomplete="off" type="text" name="q" placeholder="Search Encyclopedia">
+                </form>
+                <div>
+                    <a href="{% url 'index' %}">Home</a>
+                </div>
+                <div>
+                    <a href="{% url 'newpage' %}">Create New Page</a>
+                </div>
+                <div>
+                    <a href="{% url 'rand' %}">Random Page</a> 
+                </div>
+                <!-- {% block nav %}
+                {% endblock %} -->
+            </div>
+            <div class="main col-lg-10 col-md-9">
+                <%- body %> 
+
+            </div>
+        </div>
+
+    </body>
+</html>
