@@ -1,27 +1,8 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Encyclopedia</title>
-</head>
-<body>
-    before
-    <br>
-
-    <br>
-after
-</body>
-</html> -->
-
-<!-- {% load static %} -->
-
 <!DOCTYPE html>
 
 <html lang="en">
     <head>
-        <title>Encyclopedia</title>
+        <title>Encyclopedia | <%= title %> </title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <link href="/css/style.css" rel="stylesheet" type="text/css">
     </head>
@@ -33,10 +14,10 @@ after
                     <input class="search" autocomplete="off" type="text" name="q" placeholder="Search Encyclopedia">
                 </form>
                 <div>
-                    <a href="{% url 'index' %}">Home</a>
+                    <a href="/">Home</a>
                 </div>
                 <div>
-                    <a href="{% url 'newpage' %}">Create New Page</a>
+                    <a href="/new-page">Create New Page</a>
                 </div>
                 <div>
                     <a href="{% url 'rand' %}">Random Page</a> 

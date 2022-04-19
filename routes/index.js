@@ -1,9 +1,19 @@
 const express = require("express");
-const router = express.Router()
+const router = express.Router();
 
-router.get('/', (req, res) =>  {
-    // res.sendFile('views/index.html', {root: __dirname })
-    res.render('index')
-})
+router.get("/", (req, res) => {
+  // res.render('index')
+  res.render("index", { title: "Home" });
+});
+router.get("/new-page", (req, res) => {
+  res.render("new-page", { title: "Create New Entry" });
+});
 
-module.exports = router
+router.post("/new-page", (req, res) => {
+  // res.render('new-page')
+  res.render("new-page");
+});
+router.use((req, res) => {
+  res.status(404).render("404", { title: "404" });
+});
+module.exports = router;
