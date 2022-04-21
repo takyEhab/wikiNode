@@ -5,18 +5,27 @@ const md = require("markdown-it")();
 
 // main page
 router.get("/", async (req, res) => {
-  const entries = await listEntries();
-  console.log(req.query.q);
-  console.log(entries)
+  let entries = await listEntries();
+  const q = req.query.q;
+  if (q) {
+    entries = entries.filter((item) =>
+      item.toLowerCase().includes(q.toLowerCase())
+    );
+  }
+
   res.render("index", { title: "Home", entries });
   // : JSON.stringify(entries)
 });
-
+router.get("/random", async (req, res) => {
+  let entries = await listEntries();
+  res.redirect(`/wiki/${entries[Math.floor(Math.random()*entries.length)]}`);
+});
 router.get("/wiki/:entry", async (req, res) => {
   const title = req.params.entry;
   const markDown = await getEntry(title);
   if (!markDown) {
-    return res.render("entry", { title: "404", content: "Entry NOT found" });
+ return res.status(404).render("404", { title: "404" });
+
   }
   const content = md.render(markDown);
   req.app.set("layout", "layouts/layout2");
@@ -32,7 +41,8 @@ router.get("/new-page", (req, res) => {
 
 // receive data from new-page
 router.post("/new-page", (req, res) => {
-  res.render("new-page");
+  
+  res.redirect(`/wiki/CSS`)
 });
 
 // handling wrong URLs
