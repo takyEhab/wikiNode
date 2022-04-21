@@ -18,14 +18,13 @@ router.get("/", async (req, res) => {
 });
 router.get("/random", async (req, res) => {
   let entries = await listEntries();
-  res.redirect(`/wiki/${entries[Math.floor(Math.random()*entries.length)]}`);
+  res.redirect(`/wiki/${entries[Math.floor(Math.random() * entries.length)]}`);
 });
 router.get("/wiki/:entry", async (req, res) => {
   const title = req.params.entry;
   const markDown = await getEntry(title);
   if (!markDown) {
- return res.status(404).render("404", { title: "404" });
-
+    return res.status(404).render("404", { title: "404" });
   }
   const content = md.render(markDown);
   req.app.set("layout", "layouts/layout2");
@@ -40,9 +39,26 @@ router.get("/new-page", (req, res) => {
 });
 
 // receive data from new-page
-router.post("/new-page", (req, res) => {
-  
-  res.redirect(`/wiki/CSS`)
+router.post("/new-page", async (req, res) => {
+  let error = false;
+  let entries = await listEntries();
+  let content = req.body;
+
+  if (entries.includes(content.title)) {
+    error = "Title already exists";
+  }
+  if (content.content.length < 10) {
+    error = "Content is very short";
+  }
+  if (error === false) {
+    await saveEntry(content.title, content.content)
+  return res.redirect(`/wiki/${content.title}`)
+}
+  res.render(`new-entry`, {
+    title: "New",
+    content: JSON.stringify(content),
+    error,
+  });
 });
 
 // handling wrong URLs

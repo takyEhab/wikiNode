@@ -1,18 +1,19 @@
 <div style="justify-content: center; align-items: center; width: 100%;">
-  <div class="dark:text-gray-400">
+  <div class="dark:text-gray-200">
     <p style="font-size: 30px">Create New Entry</p>
 
     <p style="font-size: 20px">Using Markdown</p>
-    <br /><br />
+    <br />
     <form action="new-page" method="post">
       <!-- {% csrf_token %} -->
       <div class="mb-6">
         <label
           for="large-input"
-          class="block mb-4  text-2xl font-medium text-gray-900 dark:text-gray-300"
+          class="block mb-4  text-2xl font-medium text-gray-1000 dark:text-gray-400"
           >Entry Title</label
         >
         <input
+        name="title"
           type="text"
           id="small-input"
           placeholder="Write Title Here ..."
@@ -22,10 +23,11 @@
       <div class="mb-6">
         <label
           for="large-input"
-          class="block mb-4 text-2xl font-medium text-gray-900 dark:text-gray-300"
+          class="block mb-4 text-2xl font-medium text-gray-1000 dark:text-gray-400"
           >Entry Content</label
         >
         <textarea
+        name="content"
           rows="6"
           class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           placeholder="Write Content Here..."
