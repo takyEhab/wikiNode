@@ -3,6 +3,16 @@ const router = express.Router();
 const { listEntries, saveEntry, getEntry } = require("../util");
 const md = require("markdown-it")();
 
+router.get("/edit/:entry", async (req, res) => {
+  const markDown = await getEntry(req.params.entry);
+  res.render("new-page", {
+    title: "Edit Entry",
+    markDown,
+    name: req.params.entry,
+    isEdit:true
+  });
+});
+
 // main page
 router.get("/", async (req, res) => {
   let entries = await listEntries();
@@ -16,10 +26,12 @@ router.get("/", async (req, res) => {
   res.render("index", { title: "Home", entries });
   // : JSON.stringify(entries)
 });
+
 router.get("/random", async (req, res) => {
   let entries = await listEntries();
   res.redirect(`/wiki/${entries[Math.floor(Math.random() * entries.length)]}`);
 });
+
 router.get("/wiki/:entry", async (req, res) => {
   const title = req.params.entry;
   const markDown = await getEntry(title);
@@ -35,7 +47,7 @@ router.get("/wiki/:entry", async (req, res) => {
 
 // new entry page
 router.get("/new-page", (req, res) => {
-  res.render("new-page", { title: "Create New Entry" });
+  res.render("new-page", { title: "Create New Entry", isEdit: false });
 });
 
 // receive data from new-page
@@ -44,18 +56,20 @@ router.post("/new-page", async (req, res) => {
   let entries = await listEntries();
   let content = req.body;
 
-  if (entries.includes(content.title)) {
+  if (entries.includes(content.name)) {
     error = "Title already exists";
   }
   if (content.content.length < 10) {
     error = "Content is very short";
   }
   if (error === false) {
-    await saveEntry(content.title, content.content)
-  return res.redirect(`/wiki/${content.title}`)
-}
+    await saveEntry(content.name, content.content);
+    return res.redirect(`/wiki/${content.name}`);
+  }
+  // res.redirect(`/wiki/${content.name}`);
+
   res.render(`new-entry`, {
-    title: "New",
+    title: content.title,
     content: JSON.stringify(content),
     error,
   });

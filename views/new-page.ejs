@@ -1,4 +1,4 @@
-<div style="justify-content: center; align-items: center; width: 100%;">
+<div style="justify-content: center; align-items: center; width: 100%">
   <div class="dark:text-gray-200">
     <p style="font-size: 30px">Create New Entry</p>
 
@@ -9,15 +9,16 @@
       <div class="mb-6">
         <label
           for="large-input"
-          class="block mb-4  text-2xl font-medium text-gray-1000 dark:text-gray-400"
+          class="block mb-4 text-2xl font-medium text-gray-1000 dark:text-gray-400"
           >Entry Title</label
         >
         <input
-        name="title"
+          name="name"
           type="text"
           id="small-input"
-          placeholder="Write Title Here ..."
+          placeholder="Write TitleHere ..."
           class="block p-2 text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          value="<% if(isEdit != false) {%> <%= name %> <% } %>"
         />
       </div>
       <div class="mb-6">
@@ -27,11 +28,13 @@
           >Entry Content</label
         >
         <textarea
-        name="content"
-          rows="6"
+          name="content"
+          rows="8"
           class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           placeholder="Write Content Here..."
-        ></textarea>
+        >
+<% if(isEdit != false) {%> <%= markDown %> <% } %></textarea
+        >
       </div>
       <button
         type="submit"

@@ -1,9 +1,37 @@
 body {
   margin: 0;
-  background-color: #111827
+  background-color: #111827;
 }
 
 .main {
   padding: 10px;
 }
 
+.button {
+  text-align: center;
+  padding: 10px;
+  font-size: 10px;
+  text-decoration: none;
+  color: white;
+  background-color: #4578e4;
+  border-radius: 10px;
+}
+a:hover {
+  background-color: #232a3a;
+}
+.header {
+  text-align: center;
+  color: white;
+  font-size: 40px;
+  padding: 15px;
+  margin-bottom: 50px;
+font-weight: 100;
+}
+.item {
+  text-align: center;
+  padding: 10px;
+  font-size: 20px;
+  text-decoration: none;
+  color: white;
+  margin: 10px;
+}
