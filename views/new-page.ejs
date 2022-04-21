@@ -1,14 +1,17 @@
-<h1>Create New Entry</h1>
-<h6>Using Markdown</h6>
+<div class="dark:text-gray-400">
+  <h1>Create New Entry</h1>
 
-<form action="new-page" method="post">
-  <!-- {% csrf_token %} -->
-  <br /><br />
-  <h5>Title entry</h5>
-  {{ form.TitleEntry }}
-  <br /><br />
-  <h5>Entry</h5>
-  {{ form.Entry }}
-  <br /><br />
-  <input type="submit" value="Save New Page" />
-</form>
+  <h6>Using Markdown</h6>
+
+  <form action="new-page" method="post">
+    <!-- {% csrf_token %} -->
+    <br /><br />
+    <h5>Title entry</h5>
+    {{ form.TitleEntry }}
+    <br /><br />
+    <h5>Entry</h5>
+    {{ form.Entry }}
+    <br /><br />
+    <input type="submit" value="Save New Page" />
+  </form>
+</div>

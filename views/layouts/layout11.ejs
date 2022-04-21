@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <title>Encyclopedia | <%= title %></title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <link href="/css/style.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div class="row">
+      <div class="sidebar col-lg-2 col-md-3">
+        <h2>Wiki</h2>
+        <form action="{% url 'search' %}" method="get">
+          <input
+            class="search"
+            autocomplete="off"
+            type="text"
+            name="q"
+            placeholder="Search Encyclopedia"
+          />
+        </form>
+        <div>
+          <a href="/">Home</a>
+        </div>
+        <div>
+          <a href="/new-page">Create New Page</a>
+        </div>
+        <div>
+          <a href="{% url 'rand' %}">Random Page</a>
+        </div>
+        <!-- {% block nav %}
+                {% endblock %} -->
+      </div>
+      <div class="main col-lg-10 col-md-9"><%- body %></div>
+    </div>
+    <script src="../path/to/flowbite/dist/flowbite.js"></script>
+  </body>
+</html>
+
+
+    <!-- <aside
+      aria-label="Sidebar"
+      class="overflow-y-auto py-4 px-3 w-50 bg-gray-50 h-full fixed shadow-md dark:bg-gray-800"
+    >
+      <a href="http://localhost:3000" class="flex items-center pl-2.5 mb-5">
+        <img src="/encyclopedia.png" class="h-6 mr-3 sm:h-7" alt="Wiki Logo" />
+        <span
+          class="self-center text-xl font-semibold whitespace-nowrap dark:text-white"
+          >Wiki</span
+        >
+      </a>
+      <ul class="space-y-2">
+        <li>
+          <a
+            href="/"
+            class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+          >
+            <svg
+              class="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
+              ></path>
+            </svg>
+            <span class="ml-3">Home</span>
+          </a>
+        </li>
+        <li>
+          <a
+            href="/new-page"
+            class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+          >
+            <svg
+              class="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
+              ></path>
+            </svg>
+            <span class="flex-1 ml-3 whitespace-nowrap">Create New Page</span>
+          </a>
+        </li>
+        <li>
+          <a
+            href="#"
+            class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+          >
+            <svg
+              class="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+              ></path>
+            </svg>
+            <span class="flex-1 ml-3 whitespace-nowrap">Random Page</span>
+          </a>
+        </li>
+        <li>
+          <label
+            for="toggle-example"
+            class="flex relative items-center mt-3 cursor-pointer"
+          >
+            <input
+              type="checkbox"
+              id="toggle-example"
+              class="sr-only"
+              onclick="toggleMode()"
+            />
+            <div
+              class="w-10 h-6 bg-gray-200 rounded-full border border-gray-200 toggle-bg dark:bg-gray-700 dark:border-gray-600"
+            ></div>
+            <span
+              class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300"
+              id="mode-text"
+              >Turn ON the lights</span
+            >
+          </label>
+        </li>
+        <li class="fixed bottom-0">
+          <div
+            class="flex items-center p-2 text-base font-normal text-gray-900 dark:text-white "
+          >
+            <img
+              id="avatar"
+              type="button"
+              data-dropdown-toggle="userDropdown"
+              data-dropdown-placement="bottom-start"
+              class="w-6 h-6 rounded-full cursor-pointer"
+              src="/user.jpg"
+              alt="User dropdown"
+            />
+            <span class="flex-1 ml-3 whitespace-nowrap">My account</span>
+
+          Dropdown menu 
+          <div
+            id="userDropdown"
+            class="z-10 hidden bg-white divide-y divide-gray-100 rounded shadow w-44 dark:bg-gray-700 dark:divide-gray-600"
+          >
+            <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
+              <div>Bonnie Green</div>
+              <div class="font-medium truncate">name@flowbite.com</div>
+            </div>
+            <ul
+              class="py-1 text-sm text-gray-700 dark:text-gray-200"
+              aria-labelledby="dropdownInformationButton"
+            >
+              <li>
+                <a
+                  href="#"
+                  class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                  >Dashboard</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                  >Settings</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                  >Earnings</a
+                >
+              </li>
+            </ul>
+            <div class="py-1">
+              <a
+                href="#"
+                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                >Sign out</a
+              >
+            </div>
+          </div>
+        </li>
+      </ul>
+    </aside> -->
