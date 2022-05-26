@@ -4,6 +4,7 @@ const fsPromise = fs.promises;
 
 const directoryPath = path.join(__dirname, "entries");
 
+// get all entry names from entries folder
 exports.listEntries = async () => {
   try {
     const files = await fsPromise.readdir(directoryPath);
@@ -12,6 +13,8 @@ exports.listEntries = async () => {
     return error.message;
   }
 };
+
+// save entry file in entries folder
 exports.saveEntry = async (title, content) => {
   try {
     const filename = `${directoryPath}/${title}.md`;
@@ -20,16 +23,14 @@ exports.saveEntry = async (title, content) => {
     return error.message;
   }
 };
+
+// get entry txt from entries folder
 exports.getEntry = async (title) => {
   try {
     const path = `${directoryPath}/${title}.md`;
     const content = await fs.promises.readFile(path, "utf8");
-    // console.log(content);
     return content;
   } catch (error) {
     return null;
-    // console.log(null);
-    // console.log(error.message);
   }
 };
-// saveEntry("t", "sfsafsafsafsaadfsa");
